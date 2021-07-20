@@ -6,6 +6,7 @@ local functions = {}
 local properties = {
     autoStand = false,
     canEatRoka = false,
+    shinyFarm = false,
 }
 
 local StandsToGet = {
@@ -99,24 +100,34 @@ end
 functions.EatRoka = function()
     if properties.canEatRoka then
     
-        local Player = game.Players.LocalPlayer
-        local StandValue = Player.PlayerStats.Stand
-        print("oh")     
-       if StandsToGet[StandValue.Value] == false then
-       
-        print("oh2")
-        local Character = Player.Character 
+        if properties.shinyFarm then
+            if StandsToGet[StandValue.Value] == false then
+                if Character.StandMorph.StandSkin.Value ~= ""  and properties.shinyFarm == true then
+                
+                else
     
-        Character:WaitForChild("RemoteEvent"):FireServer("EndDialogue", rokakakaEatTable)
+            local Player = game.Players.LocalPlayer
+            local StandValue = Player.PlayerStats.Stand
+    
+            print("oh")     
+           if StandsToGet[StandValue.Value] == false then
+           
+            print("oh2")
+            local Character = Player.Character 
         
-        spawn(function()
-            properties.canEatRoka = false    
-            wait(.5)
-            properties.canEatRoka = true
-        end)
-          
-        end
+            Character:WaitForChild("RemoteEvent"):FireServer("EndDialogue", rokakakaEatTable)
+            
+            spawn(function()
+                properties.canEatRoka = false    
+                wait(.5)
+                properties.canEatRoka = true
+            end)
+              
+            end
+            end
     end
+    end
+end
 end
 
 functions.useArrow = function()
@@ -201,6 +212,18 @@ local autoStandToggle = AutoStandsSection:NewToggle("Auto Stand", "Toggles Auto 
         print("Auto Stand off")
     end
 end)
+
+local shinyFarmToggle = AutoStandsSection:NewToggle("Shiny Farm", "Stops on any shiny", function(Value)
+    if Value then
+          properties.shinyFarm = true
+          
+          print("Shiny Farm on")
+      else
+          properties.shinyFarm = false
+          print("Shiny Farm off")
+      end
+  end)
+
 
 local StandsSection = StandsPage:NewSection("Stands")
 
