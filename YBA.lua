@@ -71,6 +71,11 @@ local rokakakaEatTable = {
      ["Dialogue"] = "Dialogue2"
  }
  
+ local autoArcadeTable = {
+    ["NPC"] = "Item Machine",
+    ["Option"] = "Option1",
+    ["Dialogue"] = "Dialogue1"
+}
 
  local kavo = Library.CreateLib("Mos Lord Hub", "BloodTheme")
  local StandsPage = kavo:NewTab("Stands")
@@ -153,6 +158,35 @@ functions.autoStand = function()
    end)
 end
 
+functions.autoArcade = function()
+
+    spawn(function()
+        while wait() do
+
+            if properties.autoArcade then
+                local Character = game.Players.LocalPlayer.Character
+                Character.RemoteEvent:FireServer("EndDialogue", autoArcadeTable)
+            else
+                break
+            end
+        end
+    end)
+
+end
+local ArcadePage = kavo:NewTab("Arcade")
+local ArcadeSection = ArcadePage:NewSection("Auto Arcade")
+
+local AutoArcadeToggle = ArcadeSection:NewToggle("Auto Arcade", "Toggles Auto Arcade", function(Value)
+    if Value then
+          properties.autoArcade = true
+          
+          functions.autoArcade()
+          print("Auto Arcade on")
+      else
+          properties.autoArcade = false
+          print("Auto Arcade off")
+     end
+end)
 
 local AutoStandsSection = StandsPage:NewSection("Auto Stand")
 
