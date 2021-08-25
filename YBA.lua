@@ -330,11 +330,11 @@ local WalkSpeedToggle = MiscChannel:Toggle("WalkSpeed", false, function(bool)
 if bool then
   _G.canwalkspeed = true
   spawn(function()
- 
+    repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
     while true do game:GetService("RunService").RenderStepped:Wait()
         
       if _G.canwalkspeed then
-        repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
+     
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = walkspeed
       else
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
