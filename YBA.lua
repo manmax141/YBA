@@ -284,19 +284,21 @@ local once = false
 local AutoAttachToggle = MiscChannel:Toggle("Auto Attach", false, function(bool)
 
   if bool then
+ 
     properties.autoAttach = true
    
     spawn(function()
   
     while true do wait()
-      repeat wait() until game.Players.LocalPlayer.Character
+  
       if properties.autoAttach then
+        local char = player.Character or player.CharacterAdded:Wait()
         repeat wait() until char:FindFirstChild("StandMorph")
         local stand = char:WaitForChild("StandMorph")
         local standhrp = stand:WaitForChild("HumanoidRootPart")
 
-        standhrp.StandAttach.AlignPosition.Attachment1 = getgenv().standAttachTarget:WaitForChild("HumanoidRootPart"):WaitForChild("RootRigAttachment")
-        standhrp.StandAttach.AlignOrientation.Attachment1 = getgenv().standAttachTarget:WaitForChild("HumanoidRootPart"):WaitForChild("RootRigAttachment")
+        standhrp.StandAttach.AlignPosition.Attachment1 = getgenv().standAttachTarget:WaitForChild("Head"):WaitForChild("FaceFrontAttachment")
+        standhrp.StandAttach.AlignOrientation.Attachment1 = getgenv().standAttachTarget:WaitForChild("Head"):WaitForChild("FaceFrontAttachment")
       else
         local stand = char:WaitForChild("StandMorph")
         local standhrp = stand:WaitForChild("HumanoidRootPart")
