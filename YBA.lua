@@ -287,8 +287,9 @@ local AutoAttachToggle = MiscChannel:Toggle("Auto Attach", false, function(bool)
     properties.autoAttach = true
    
     spawn(function()
-      repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
+  
     while true do wait()
+      repeat wait() until game.Players.LocalPlayer.Character
       if properties.autoAttach then
         repeat wait() until char:FindFirstChild("StandMorph")
         local stand = char:WaitForChild("StandMorph")
