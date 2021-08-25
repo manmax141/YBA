@@ -297,8 +297,8 @@ local AutoAttachToggle = MiscChannel:Toggle("Auto Attach", false, function(bool)
         local stand = char:WaitForChild("StandMorph")
         local standhrp = stand:WaitForChild("HumanoidRootPart")
 
-        standhrp.StandAttach.AlignPosition.Attachment1 = getgenv().standAttachTarget:WaitForChild("LowerTorso"):WaitForChild("WaistCenterAttachment")
-        standhrp.StandAttach.AlignOrientation.Attachment1 = getgenv().standAttachTarget:WaitForChild("LowerTorso"):WaitForChild("WaistCenterAttachment")
+        standhrp.StandAttach.AlignPosition.Attachment1 = getgenv().standAttachTarget:WaitForChild("HumanoidRootPart"):WaitForChild("RootRigAttachment")
+        standhrp.StandAttach.AlignOrientation.Attachment1 = getgenv().standAttachTarget:WaitForChild("HumanoidRootPart"):WaitForChild("RootRigAttachment")
       else
         local stand = char:WaitForChild("StandMorph")
         local standhrp = stand:WaitForChild("HumanoidRootPart")
