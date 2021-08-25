@@ -13,8 +13,7 @@
   local Living = workspace.Living
   local ItemSpawns = workspace["Item_Spawns"]
   local ts = game:GetService("TweenService")
-  workspace.StreamingEnabled = false
-  hum.Health = 0
+
   getgenv().standAttachTarget = "None"
   getgenv().item = "none"
   _G.canwalkspeed = false
