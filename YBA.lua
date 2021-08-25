@@ -195,7 +195,7 @@ end
     properties.autoStand = true
     local Stand = player.PlayerStats.Stand
     spawn(function()
-      while true do wait()  
+      while true do wait(.15)  
         if properties.autoStand then
 local player = game.Players.LocalPlayer
 local char = player.Character
