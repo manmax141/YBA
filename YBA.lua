@@ -287,9 +287,9 @@ local AutoAttachToggle = MiscChannel:Toggle("Auto Attach", false, function(bool)
     properties.autoAttach = true
    
     spawn(function()
+      repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
     while true do wait()
       if properties.autoAttach then
-        repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
         repeat wait() until char:FindFirstChild("StandMorph")
         local stand = char:WaitForChild("StandMorph")
         local standhrp = stand:WaitForChild("HumanoidRootPart")
@@ -357,11 +357,11 @@ local JumpPowerToggle = MiscChannel:Toggle("JumpPower", false, function(bool)
   if bool then
     _G.canjump = true
   spawn(function()
-   
+    repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
   while true do game:GetService("RunService").RenderStepped:Wait()
       
     if _G.canjump then
-      repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
+   
       game.Players.LocalPlayer.Character.Humanoid.JumpPower = jumpPower
     else
       game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
