@@ -11,11 +11,8 @@
   local Quest = player.PlayerStats.Quest
   local repStorage = game:GetService("ReplicatedStorage")
   local Living = workspace.Living
-  local ItemSpawns = workspace["Item_Spawns"]
   local ts = game:GetService("TweenService")
-
   getgenv().standAttachTarget = "None"
-  getgenv().item = "none"
   _G.canwalkspeed = false
   _G.canjump = false
   local walkspeed = 16
@@ -292,13 +289,15 @@ local AutoAttachToggle = MiscChannel:Toggle("Auto Attach", false, function(bool)
     while true do wait()
   
       if properties.autoAttach then
-        local char = player.Character or player.CharacterAdded:Wait()
+      
+        spawn(function()
         repeat wait() until char:FindFirstChild("StandMorph")
         local stand = char:WaitForChild("StandMorph")
         local standhrp = stand:WaitForChild("HumanoidRootPart")
 
-        standhrp.StandAttach.AlignPosition.Attachment1 = getgenv().standAttachTarget:WaitForChild("HumanoidRootPart"):WaitForChild("RootRigAttachment")
-        standhrp.StandAttach.AlignOrientation.Attachment1 = getgenv().standAttachTarget:WaitForChild("HumanoidRootPart"):WaitForChild("RootRigAttachment")
+        standhrp.StandAttach.AlignPosition.Attachment1 = getgenv().standAttachTarget:WaitForChild("Head"):FindFirstChildOfClass("Attachment")
+        standhrp.StandAttach.AlignOrientation.Attachment1 = getgenv().standAttachTarget:WaitForChild("Head"):FindFirstChildOfClass("Attachment")
+        end)
       else
         local stand = char:WaitForChild("StandMorph")
         local standhrp = stand:WaitForChild("HumanoidRootPart")
@@ -399,30 +398,3 @@ else
   properties.autoArcade = false
 end
 end)
-
---local ItemFarmToggle = ItemFarmChannel:Toggle("Item Farm", false, function(bool)
- -- if bool then
-  --  properties.itemFarm = true
-
-  --  spawn(function()
-   --   while true do wait()
-    --   if properties.itemFarm then
-
-      --    for i,v in pairs(ItemSpawns.Items:GetChildren()) do
-         --   if v.Name == "Item" then
-            --  local char = player.Character or player.CharacterAdded:Wait()
-           --   char:SetPrimaryPartCFrame(v:WaitForChild("MeshPart"))
-          --    fireclickdetector(clickdetector)
-         --     wait(.45)
-        --    end
-      --    end
-     --   else
-
-      --    break
-     --   end
-   --   end
- --   end)
---  else
-  --  properties.itemFarm = false
- -- end
---end)
