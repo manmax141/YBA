@@ -202,7 +202,7 @@ local char = player.Character
           
       if Stand.Value ~= "None" and StandsToGet[Stand.Value] == false then
     
-      if char:FindFirstChild("UsingArrow") or Stand.Value ~= "None" then
+      if Stand.Value ~= "None" then
         if properties.shinyFarm then
           if char:WaitForChild("StandMorph"):WaitForChild("StandSkin").Value == "" then
 
